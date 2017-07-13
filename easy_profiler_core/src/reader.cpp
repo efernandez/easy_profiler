@@ -66,7 +66,7 @@
 *                   : limitations under the License.
 ************************************************************************/
 
-#include <easy/reader.h>
+#include <easy_profiler/reader.h>
 
 #include "hashed_cstr.h"
 

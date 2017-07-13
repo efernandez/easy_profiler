@@ -53,30 +53,30 @@ message(STATUS "------ END EASY_PROFILER OPTIONS -------")
 message(STATUS "")
 
 set(CPP_FILES
-    block.cpp
-    profile_manager.cpp
-    reader.cpp
-    event_trace_win.cpp
-    easy_socket.cpp
+    src/block.cpp
+    src/profile_manager.cpp
+    src/reader.cpp
+    src/event_trace_win.cpp
+    src/easy_socket.cpp
 )
 
 set(H_FILES
-    profile_manager.h
-    spin_lock.h
-    event_trace_win.h
-    current_time.h
+    src/profile_manager.h
+    src/spin_lock.h
+    src/event_trace_win.h
+    src/current_time.h
 )
 
 set(INCLUDE_FILES
-    include/easy/profiler.h
-    include/easy/reader.h
-    include/easy/easy_net.h
-    include/easy/easy_socket.h
-    include/easy/easy_compiler_support.h
-    include/easy/profiler_aux.h
-    include/easy/profiler_colors.h
-    include/easy/reader.h
-    include/easy/serialized_block.h
+    include/easy_profiler/profiler.h
+    include/easy_profiler/reader.h
+    include/easy_profiler/easy_net.h
+    include/easy_profiler/easy_socket.h
+    include/easy_profiler/easy_compiler_support.h
+    include/easy_profiler/profiler_aux.h
+    include/easy_profiler/profiler_colors.h
+    include/easy_profiler/reader.h
+    include/easy_profiler/serialized_block.h
 )
 
 source_group(include FILES ${INCLUDE_FILES})

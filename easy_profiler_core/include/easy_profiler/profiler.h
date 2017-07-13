@@ -43,7 +43,7 @@ The Apache License, Version 2.0 (the "License");
 #ifndef EASY_PROFILER_H
 #define EASY_PROFILER_H
 
-#include <easy/profiler_aux.h>
+#include <easy_profiler/profiler_aux.h>
 
 #if defined ( __clang__ )
 # pragma clang diagnostic push
@@ -55,7 +55,7 @@ The Apache License, Version 2.0 (the "License");
 //
 
 //
-// DISABLE_EASY_PROFILER may be defined manually in source-file before #include <easy/profiler.h>
+// DISABLE_EASY_PROFILER may be defined manually in source-file before #include <easy_profiler/profiler.h>
 //                       to disable profiler for certain source-file or project.
 //
 
@@ -78,7 +78,7 @@ The Apache License, Version 2.0 (the "License");
 /** Macro for beginning of a scoped block with custom name and color.
 
 \code
-    #include <easy/profiler.h>
+    #include <easy_profiler/profiler.h>
     void foo()
     {
         // some code ...
@@ -120,7 +120,7 @@ Block will be automatically completed by destructor.
 You must end such block manually with EASY_END_BLOCK.
 
 \code
-    #include <easy/profiler.h>
+    #include <easy_profiler/profiler.h>
     void foo() {
         EASY_NONSCOPED_BLOCK("Callback"); // Begin block which would not be finished when function returns.
 
@@ -155,7 +155,7 @@ Block will be automatically completed by destructor.
 /** Macro for beginning of a block with function name and custom color.
 
 \code
-    #include <easy/profiler.h>
+    #include <easy_profiler/profiler.h>
     void foo(){
         EASY_FUNCTION(); // Block with name="foo" and default color
         //some code...
@@ -185,7 +185,7 @@ Name of the block automatically created with function name.
 /** Macro for completion of last opened block explicitly.
 
 \code
-#include <easy/profiler.h>
+#include <easy_profiler/profiler.h>
 int foo()
 {
     // some code ...

@@ -81,7 +81,7 @@ inline QRgb selectedItemBorderColor(::profiler::color_t _color) {
 }
 
 const QPen HIGHLIGHTER_PEN = ([]() -> QPen { QPen p(::profiler::colors::Black); p.setStyle(Qt::DotLine); p.setWidth(2); return p; })();
-const auto ITEMS_FONT = ::profiler_gui::EFont("Helvetica", 10, QFont::Medium);
+const auto ITEMS_FONT = ::profiler_gui::EFont("Helvetica", 10, (QFont::Normal + QFont::DemiBold)/2);
 const auto SELECTED_ITEM_FONT = ::profiler_gui::EFont("Helvetica", 10, QFont::Bold);
 
 #ifdef max

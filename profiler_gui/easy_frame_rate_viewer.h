@@ -60,7 +60,7 @@
 #include <QTimer>
 #include <vector>
 #include <deque>
-#include <easy/profiler.h>
+#include <easy_profiler/profiler.h>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -118,6 +118,8 @@ public slots:
     void clear();
     void addPoint(uint32_t _maxFrameTime, uint32_t _avgFrameTime);
 
+private slots:
+    void setMinimumHeightHelper();
 }; // END of class EasyFrameRateViewer.
 
 //////////////////////////////////////////////////////////////////////////

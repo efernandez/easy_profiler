@@ -62,7 +62,7 @@
 #include <vector>
 #include <unordered_set>
 
-#include <easy/profiler.h>
+#include <easy_profiler/profiler.h>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -146,6 +146,8 @@ private slots:
     void onBlockStatusChange(::profiler::block_id_t _id, ::profiler::EasyBlockStatus _status);
     void resizeColumnsToContents();
 
+    void selectGlobalBlock();
+    
 private:
 
     // Private methods

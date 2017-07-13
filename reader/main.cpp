@@ -1,5 +1,5 @@
-#include <easy/profiler.h>
-#include <easy/reader.h>
+#include <easy_profiler/profiler.h>
+#include <easy_profiler/reader.h>
 #include <fstream>
 #include <list>
 #include <iostream>

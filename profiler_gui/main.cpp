@@ -53,7 +53,7 @@
 
 #include "main_window.h"
 
-#include <easy/reader.h>
+#include <easy_profiler/reader.h>
 
 
 #if defined(_WIN32) && defined (_BUILD_RELEASE_)

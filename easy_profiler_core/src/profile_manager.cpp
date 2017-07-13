@@ -53,9 +53,9 @@
 #include <assert.h>
 #include "profile_manager.h"
 
-#include <easy/serialized_block.h>
-#include <easy/easy_net.h>
-#include <easy/easy_socket.h>
+#include <easy_profiler/serialized_block.h>
+#include <easy_profiler/easy_net.h>
+#include <easy_profiler/easy_socket.h>
 
 #include "event_trace_win.h"
 #include "current_time.h"

@@ -89,7 +89,7 @@ Example of usage.
 
 This code snippet will generate block with function name and Magenta color:
 ```cpp
-#include <easy/profiler.h>
+#include <easy_profiler/profiler.h>
 
 void frame() {
     EASY_FUNCTION(profiler::colors::Magenta); // Magenta block with name "frame"
@@ -102,7 +102,7 @@ To profile any block you may do this as following.
 You can specify these blocks also with Google material design colors or just set name of the block
 (in this case it will have default color which is `Amber100`):
 ```cpp
-#include <easy/profiler.h>
+#include <easy_profiler/profiler.h>
 
 void foo() {
     // some code
@@ -125,7 +125,7 @@ void foo() {
 You can also use your own colors. easy_profiler is using standard 32-bit ARGB color format.
 Example:
 ```cpp
-#include <easy/profiler.h>
+#include <easy_profiler/profiler.h>
 
 void bar() {
     EASY_FUNCTION(0xfff080aa); // Function block with custom color

@@ -73,7 +73,7 @@
 #include <QScrollBar>
 #include <QGridLayout>
 #include <QDebug>
-#include <QSignalBlocker>
+#include <SignalBlocker.h>
 #include <QGraphicsDropShadowEffect>
 #include "blocks_graphics_view.h"
 #include "easy_graphics_item.h"
@@ -2159,7 +2159,7 @@ void EasyThreadNamesWidget::removePopup(bool _removeFromScene)
 
 void EasyThreadNamesWidget::clear()
 {
-    const QSignalBlocker b(this);
+    const QSignalBlocker blocker(this);
     removePopup();
     scene()->clear();
 
@@ -2177,7 +2177,7 @@ void EasyThreadNamesWidget::setVerticalScrollbarRange(int _minValue, int _maxVal
 
 void EasyThreadNamesWidget::onTreeChange()
 {
-    const QSignalBlocker b(this);
+    const QSignalBlocker blocker(this);
     removePopup();
     scene()->clear();
 

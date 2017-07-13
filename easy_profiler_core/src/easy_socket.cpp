@@ -39,7 +39,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-#include <easy/easy_socket.h>
+#include <easy_profiler/easy_socket.h>
 
 #include <string.h>
 #include <thread>

@@ -69,7 +69,7 @@
 #include "tree_widget_loader.h"
 #include "tree_widget_item.h"
 
-#include <easy/reader.h>
+#include <easy_profiler/reader.h>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -151,11 +151,13 @@ private slots:
 
     void onFillTimerTimeout();
 
+protected slots:
+    void alignProgressBar();
+
 protected:
 
     void loadSettings();
     void saveSettings();
-    void alignProgressBar();
 
 }; // END of class EasyTreeWidget.
 
