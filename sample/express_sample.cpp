@@ -6,8 +6,8 @@
 #include <cstdlib>
 #include <math.h>
 
-#include <easy/profiler.h>
-#include <easy/reader.h>
+#include <easy_profiler/profiler.h>
+#include <easy_profiler/reader.h>
 
 int OBJECTS = 500;
 

@@ -65,7 +65,7 @@
 #include <QAction>
 #include <QHeaderView>
 #include <QContextMenuEvent>
-#include <QSignalBlocker>
+#include <SignalBlocker.h>
 #include <QSettings>
 #include <QProgressDialog>
 #include <QResizeEvent>
@@ -262,7 +262,7 @@ EasyTreeWidget::EasyTreeWidget(QWidget* _parent)
     m_hintLabel->setAlignment(Qt::AlignCenter);
     m_hintLabel->setStyleSheet("QLabel { color: gray; font: 12pt; }");
 
-    QTimer::singleShot(1500, this, &This::alignProgressBar);
+    QTimer::singleShot(1500, this, SLOT(alignProgressBar()));
 }
 
 EasyTreeWidget::~EasyTreeWidget()
@@ -285,7 +285,7 @@ void EasyTreeWidget::onFillTimerTimeout()
         m_hierarchyBuilder.takeTopLevelItems(toplevelitems);
         m_hierarchyBuilder.interrupt();
         {
-            const QSignalBlocker b(this);
+            const QSignalBlocker blocker(this);
             for (auto& item : toplevelitems)
             {
                 addTopLevelItem(item.second);
@@ -341,7 +341,7 @@ void EasyTreeWidget::setTree(const unsigned int _blocksNumber, const ::profiler:
     //ThreadedItems toplevelitems;
     //FillTreeClass<StubLocker>::setTreeInternal1(l, m_items, toplevelitems, m_beginTime, _blocksNumber, _blocksTree, m_bColorRows);
     //{
-    //    const QSignalBlocker b(this);
+    //    const QSignalBlocker blocker(this);
     //    for (auto& item : toplevelitems)
     //    {
     //        addTopLevelItem(item.second);
@@ -375,7 +375,7 @@ void EasyTreeWidget::setTreeBlocks(const ::profiler_gui::TreeBlocks& _blocks, ::
     //ThreadedItems toplevelitems;
     //FillTreeClass<StubLocker>::setTreeInternal2(l, m_items, toplevelitems, m_beginTime, _blocks, _left, _right, _strict, m_bColorRows);
     //{
-    //    const QSignalBlocker b(this);
+    //    const QSignalBlocker blocker(this);
     //    for (auto& item : toplevelitems)
     //    {
     //        addTopLevelItem(item.second);
@@ -398,7 +398,7 @@ void EasyTreeWidget::setTreeBlocks(const ::profiler_gui::TreeBlocks& _blocks, ::
 
 void EasyTreeWidget::clearSilent(bool _global)
 {
-    const QSignalBlocker b(this);
+    const QSignalBlocker blocker(this);
 
     m_hierarchyBuilder.interrupt();
 
@@ -770,7 +770,7 @@ void EasyTreeWidget::onJumpToItemClicked(bool)
 
 void EasyTreeWidget::onCollapseAllClicked(bool)
 {
-    const QSignalBlocker b(this);
+    const QSignalBlocker blocker(this);
 
     m_bSilentExpandCollapse = true;
     collapseAll();
@@ -791,7 +791,7 @@ void EasyTreeWidget::onCollapseAllClicked(bool)
 
 void EasyTreeWidget::onExpandAllClicked(bool)
 {
-    const QSignalBlocker b(this);
+    const QSignalBlocker blocker(this);
 
     m_bSilentExpandCollapse = true;
     expandAll();
@@ -819,7 +819,7 @@ void EasyTreeWidget::onCollapseAllChildrenClicked(bool)
     auto current = static_cast<EasyTreeWidgetItem*>(currentItem());
     if (current != nullptr)
     {
-        const QSignalBlocker b(this);
+        const QSignalBlocker blocker(this);
 
         m_bSilentExpandCollapse = true;
         current->collapseAll();
@@ -834,7 +834,7 @@ void EasyTreeWidget::onExpandAllChildrenClicked(bool)
     auto current = static_cast<EasyTreeWidgetItem*>(currentItem());
     if (current != nullptr)
     {
-        const QSignalBlocker b(this);
+        const QSignalBlocker blocker(this);
 
         m_bSilentExpandCollapse = true;
         current->expandAll();
@@ -934,7 +934,7 @@ void EasyTreeWidget::onCurrentItemChange(QTreeWidgetItem* _item, QTreeWidgetItem
 
 void EasyTreeWidget::onColorizeRowsTriggered(bool _colorize)
 {
-    const QSignalBlocker b(this);
+    const QSignalBlocker blocker(this);
 
     m_bColorRows = _colorize;
 
@@ -995,7 +995,7 @@ void EasyTreeWidget::onSelectedBlockChange(uint32_t _block_index)
 
     if (item != nullptr)
     {
-        //const QSignalBlocker b(this);
+        //const QSignalBlocker blocker(this);
         auto previous = currentItem();
         auto f = font();
         if (previous != nullptr) for (int i = 0; i < COL_COLUMNS_NUMBER; ++i)

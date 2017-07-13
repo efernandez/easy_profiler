@@ -62,7 +62,7 @@
 #include <QRectF>
 #include <QString>
 
-#include <easy/reader.h>
+#include <easy_profiler/reader.h>
 
 #include "common_types.h"
 

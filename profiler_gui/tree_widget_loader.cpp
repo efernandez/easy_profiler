@@ -208,7 +208,7 @@ void EasyTreeWidgetLoader::setTreeInternal1(::profiler::timestamp_t& _beginTime,
             finishtime = endTime;
     }
 
-    //const QSignalBlocker b(this);
+    //const QSignalBlocker blocker(this);
     const auto u_thread = ::profiler_gui::toUnicode("thread");
     int i = 0;
     const int total = static_cast<int>(_blocksTree.size());
@@ -283,7 +283,7 @@ void EasyTreeWidgetLoader::setTreeInternal2(const ::profiler::timestamp_t& _begi
 
     const auto u_thread = ::profiler_gui::toUnicode("thread");
     int i = 0, total = static_cast<int>(_blocks.size());
-    //const QSignalBlocker b(this);
+    //const QSignalBlocker blocker(this);
     for (const auto& block : _blocks)
     {
         if (interrupted())

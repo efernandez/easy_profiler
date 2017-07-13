@@ -56,7 +56,7 @@
 #define EASY_GLOBALS_QOBJECTS_H
 
 #include <QObject>
-#include <easy/profiler.h>
+#include <easy_profiler/profiler.h>
 
 namespace profiler_gui {
 

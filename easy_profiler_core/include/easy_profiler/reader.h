@@ -50,8 +50,8 @@ The Apache License, Version 2.0 (the "License");
 #include <string>
 #include <atomic>
 
-#include <easy/profiler.h>
-#include <easy/serialized_block.h>
+#include <easy_profiler/profiler.h>
+#include <easy_profiler/serialized_block.h>
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

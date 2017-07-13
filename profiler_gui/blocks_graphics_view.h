@@ -73,7 +73,7 @@
 #include <QTimer>
 #include <QLabel>
 
-#include <easy/reader.h>
+#include <easy_profiler/reader.h>
 
 #include "common_types.h"
 

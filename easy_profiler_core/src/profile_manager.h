@@ -43,8 +43,8 @@ The Apache License, Version 2.0 (the "License");
 #ifndef EASY_PROFILER_MANAGER_H
 #define EASY_PROFILER_MANAGER_H
 
-#include <easy/profiler.h>
-#include <easy/easy_socket.h>
+#include <easy_profiler/profiler.h>
+#include <easy_profiler/easy_socket.h>
 
 #include "spin_lock.h"
 #include "outstream.h"

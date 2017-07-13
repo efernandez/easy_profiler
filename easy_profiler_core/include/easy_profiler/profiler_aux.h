@@ -57,8 +57,8 @@
 
 #include <stdint.h>
 
-#include <easy/easy_compiler_support.h>
-#include <easy/profiler_colors.h>
+#include <easy_profiler/easy_compiler_support.h>
+#include <easy_profiler/profiler_colors.h>
 
 //////////////////////////////////////////////////////////////////////////
 

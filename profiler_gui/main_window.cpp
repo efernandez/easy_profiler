@@ -74,7 +74,7 @@
 #include <QTextCodec>
 #include <QFont>
 #include <QProgressDialog>
-#include <QSignalBlocker>
+#include <SignalBlocker.h>
 #include <QDebug>
 #include <QToolBar>
 #include <QToolButton>
@@ -101,7 +101,7 @@
 #include "easy_frame_rate_viewer.h"
 #include "globals.h"
 
-#include <easy/easy_net.h>
+#include <easy_profiler/easy_net.h>
 
 #ifdef max
 #undef max
@@ -1407,7 +1407,7 @@ void EasyMainWindow::onFrameTimeRequestTimeout()
     {
         if (m_listener.requestFrameTime())
         {
-            QTimer::singleShot(100, this, &This::checkFrameTimeReady);
+            QTimer::singleShot(100, this, SLOT(checkFrameTimeReady()));
         }
         else if (!m_listener.connected())
         {
@@ -1427,7 +1427,7 @@ void EasyMainWindow::checkFrameTimeReady()
         }
         else if (m_fpsRequestTimer.isActive())
         {
-            QTimer::singleShot(100, this, &This::checkFrameTimeReady);
+            QTimer::singleShot(100, this, SLOT(checkFrameTimeReady()));
         }
     }
 }
@@ -1939,7 +1939,7 @@ void EasyMainWindow::onConnectClicked(bool)
     m_lastAddress = ::std::move(address);
     m_lastPort = port;
 
-    qInfo() << "Connected successfully";
+    qDebug() << "Connected successfully";
     EASY_GLOBALS.connected = true;
     m_captureAction->setEnabled(true);
     SET_ICON(m_connectAction, ":/Connection-on");
@@ -2535,7 +2535,7 @@ void EasySocketListener::listenCapture()
             {
                 case profiler::net::MESSAGE_TYPE_ACCEPTED_CONNECTION:
                 {
-                    qInfo() << "Receive MESSAGE_TYPE_ACCEPTED_CONNECTION";
+                    qDebug() << "Receive MESSAGE_TYPE_ACCEPTED_CONNECTION";
                     //m_easySocket.send(&request, sizeof(request));
                     seek += sizeof(profiler::net::Message);
                     break;
@@ -2543,19 +2543,19 @@ void EasySocketListener::listenCapture()
 
                 case profiler::net::MESSAGE_TYPE_REPLY_START_CAPTURING:
                 {
-                    qInfo() << "Receive MESSAGE_TYPE_REPLY_START_CAPTURING";
+                    qDebug() << "Receive MESSAGE_TYPE_REPLY_START_CAPTURING";
                     seek += sizeof(profiler::net::Message);
                     break;
                 }
 
                 case profiler::net::MESSAGE_TYPE_REPLY_BLOCKS_END:
                 {
-                    qInfo() << "Receive MESSAGE_TYPE_REPLY_BLOCKS_END";
+                    qDebug() << "Receive MESSAGE_TYPE_REPLY_BLOCKS_END";
                     seek += sizeof(profiler::net::Message);
 
                     const auto dt = ::std::chrono::duration_cast<std::chrono::milliseconds>(::std::chrono::system_clock::now() - timeBegin);
                     const auto bytesNumber = m_receivedData.str().size();
-                    qInfo() << "recieved " << bytesNumber << " bytes, " << dt.count() << " ms, average speed = " << double(bytesNumber) * 1e3 / double(dt.count()) / 1024. << " kBytes/sec";
+                    qDebug() << "recieved " << bytesNumber << " bytes, " << dt.count() << " ms, average speed = " << double(bytesNumber) * 1e3 / double(dt.count()) / 1024. << " kBytes/sec";
 
                     seek = 0;
                     bytes = 0;
@@ -2567,7 +2567,7 @@ void EasySocketListener::listenCapture()
 
                 case profiler::net::MESSAGE_TYPE_REPLY_BLOCKS:
                 {
-                    qInfo() << "Receive MESSAGE_TYPE_REPLY_BLOCKS";
+                    qDebug() << "Receive MESSAGE_TYPE_REPLY_BLOCKS";
 
                     seek += sizeof(profiler::net::DataMessage);
                     profiler::net::DataMessage* dm = (profiler::net::DataMessage*)message;
@@ -2629,7 +2629,7 @@ void EasySocketListener::listenCapture()
                 }
 
                 default:
-                    //qInfo() << "Receive unknown " << message->type;
+                    //qDebug() << "Receive unknown " << message->type;
                     break;
             }
         }
@@ -2694,14 +2694,14 @@ void EasySocketListener::listenDescription()
             {
                 case profiler::net::MESSAGE_TYPE_ACCEPTED_CONNECTION:
                 {
-                    qInfo() << "Receive MESSAGE_TYPE_ACCEPTED_CONNECTION";
+                    qDebug() << "Receive MESSAGE_TYPE_ACCEPTED_CONNECTION";
                     seek += sizeof(profiler::net::Message);
                     break;
                 }
 
                 case profiler::net::MESSAGE_TYPE_REPLY_BLOCKS_DESCRIPTION_END:
                 {
-                    qInfo() << "Receive MESSAGE_TYPE_REPLY_BLOCKS_DESCRIPTION_END";
+                    qDebug() << "Receive MESSAGE_TYPE_REPLY_BLOCKS_DESCRIPTION_END";
                     seek += sizeof(profiler::net::Message);
 
                     seek = 0;
@@ -2714,7 +2714,7 @@ void EasySocketListener::listenDescription()
 
                 case profiler::net::MESSAGE_TYPE_REPLY_BLOCKS_DESCRIPTION:
                 {
-                    qInfo() << "Receive MESSAGE_TYPE_REPLY_BLOCKS";
+                    qDebug() << "Receive MESSAGE_TYPE_REPLY_BLOCKS";
 
                     seek += sizeof(profiler::net::DataMessage);
                     profiler::net::DataMessage* dm = (profiler::net::DataMessage*)message;
@@ -2832,7 +2832,7 @@ void EasySocketListener::listenFrameTime()
 
                 case profiler::net::MESSAGE_TYPE_REPLY_MAIN_FRAME_TIME_MAX_AVG_US:
                 {
-                    //qInfo() << "Receive MESSAGE_TYPE_REPLY_MAIN_FRAME_TIME_MAX_AVG_US";
+                    //qDebug() << "Receive MESSAGE_TYPE_REPLY_MAIN_FRAME_TIME_MAX_AVG_US";
 
                     seek += sizeof(profiler::net::TimestampMessage);
                     if (seek <= buffer_size)

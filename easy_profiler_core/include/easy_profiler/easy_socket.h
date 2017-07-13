@@ -43,7 +43,7 @@ The Apache License, Version 2.0 (the "License");
 #define EASY________SOCKET_________H
 
 #include <stdint.h>
-#include <easy/profiler.h>
+#include <easy_profiler/profiler.h>
 #ifndef _WIN32
 #include <sys/types.h>
 #include <sys/socket.h>

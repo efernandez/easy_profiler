@@ -60,7 +60,7 @@
 #include <QString>
 #include <QContextMenuEvent>
 #include <QKeyEvent>
-#include <QSignalBlocker>
+#include <SignalBlocker.h>
 #include <QSettings>
 #include <QLabel>
 #include <QLineEdit>
@@ -328,7 +328,7 @@ void EasyDescTreeWidget::onSearchColumnChange(bool)
 
 void EasyDescTreeWidget::clearSilent(bool _global)
 {
-    const QSignalBlocker b(this);
+    const QSignalBlocker blocker(this);
 
     setSortingEnabled(false);
     m_lastFound = nullptr;
@@ -373,6 +373,11 @@ struct FileItems
     QTreeWidgetItem* item = nullptr;
 };
 
+void EasyDescTreeWidget::selectGlobalBlock()
+{
+  onSelectedBlockChange(EASY_GLOBALS.selected_block);
+}
+
 void EasyDescTreeWidget::build()
 {
     auto f = font();
@@ -384,7 +389,7 @@ void EasyDescTreeWidget::build()
     m_items.resize(EASY_GLOBALS.descriptors.size());
     memset(m_items.data(), 0, sizeof(void*) * m_items.size());
 
-    const QSignalBlocker b(this);
+    const QSignalBlocker blocker(this);
     ::profiler::block_id_t id = 0;
     for (auto desc : EASY_GLOBALS.descriptors)
     {
@@ -445,7 +450,7 @@ void EasyDescTreeWidget::build()
     setSortingEnabled(true);
     sortByColumn(DESC_COL_FILE_LINE, Qt::AscendingOrder);
     resizeColumnsToContents();
-    QTimer::singleShot(100, [this](){ onSelectedBlockChange(EASY_GLOBALS.selected_block); });
+    QTimer::singleShot(100, this, SLOT(selectGlobalBlock()));
 }
 
 //////////////////////////////////////////////////////////////////////////
