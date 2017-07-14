@@ -26,7 +26,7 @@ if(catkin_FOUND)
 
   catkin_package(
     INCLUDE_DIRS easy_profiler_core/include
-    LIBRARIES easy_profiler_core
+    LIBRARIES easy_profiler
     CATKIN_DEPENDS
     DEPENDS tinyxml2
     )
