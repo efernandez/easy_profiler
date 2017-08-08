@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.12.1)
-project(easy_profiler CXX)
+project(easy_profiler)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
